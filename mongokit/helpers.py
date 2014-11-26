@@ -27,6 +27,7 @@
 
 import datetime
 import logging
+from uuid import UUID, uuid4
 log = logging.getLogger(__name__)
 
 
@@ -37,6 +38,16 @@ def totimestamp(value):
     import calendar
     return int(calendar.timegm(value.timetuple()) * 1000 + value.microsecond / 1000)
 
+#TODO: uninvert naming here
+def touuid(value):
+    """
+    """
+    return UUID(value)
+
+def fromuuid(uuid):
+    """
+    """
+    return str(uuid)
 
 def fromtimestamp(epoch_date):
     """

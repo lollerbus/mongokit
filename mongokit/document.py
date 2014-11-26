@@ -36,6 +36,8 @@ from mongokit.schema_document import (
 from mongokit.helpers import (
     totimestamp,
     fromtimestamp,
+    fromuuid,
+    touuid,
     DotedDict)
 from mongokit.grid import *
 import pymongo
@@ -477,6 +479,8 @@ class Document(SchemaDocument):
                 for key in struct:
                     if isinstance(struct[key], datetime.datetime):
                         struct[key] = totimestamp(struct[key])
+                    elif isinstance(struct[key], UUID):
+                        struct[key] = fromuuid(struct[key])
                     elif isinstance(struct[key], ObjectId):
                         #struct[key] = str(struct[key])
                         struct[key] = {'$oid': str(struct[key])}
@@ -584,6 +588,8 @@ class Document(SchemaDocument):
                                     _convert_to_python(obj, struct[key][0], new_path, root_path)
                 elif struct[key] is datetime.datetime and doc[key] is not None:
                     doc[key] = fromtimestamp(doc[key])
+                elif struct[key] is UUID and doc[key] is not None:
+                    doc[key] = touuid(doc[key])
                 elif (isinstance(struct[key], R) or isinstance(struct[key],
                                                                DocumentProperties)) and doc[key] is not None:
                     db = doc[key].get('_database') or doc[key].get('$db')
