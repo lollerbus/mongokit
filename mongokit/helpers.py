@@ -41,17 +41,6 @@ def totimestamp(value):
     import calendar
     return int(calendar.timegm(value.timetuple()) * 1000 + value.microsecond / 1000)
 
-#TODO: uninvert naming here
-def touuid(value):
-    """
-    """
-    return UUID(value)
-
-def fromuuid(uuid):
-    """
-    """
-    return str(uuid)
-
 def fromtimestamp(epoch_date):
     """
     convert a float since epoch to a datetime object
@@ -59,6 +48,17 @@ def fromtimestamp(epoch_date):
     seconds = float(epoch_date) / 1000.0
     return datetime.datetime.utcfromtimestamp(seconds)
 
+def string_to_uuid(value):
+    """
+    convert a string to a UUID object
+    """
+    return UUID(value)
+
+def uuid_to_string(uuid):
+    """
+    convert a UUID object to a string
+    """
+    return str(uuid)
 
 class i18nDotedDict(dict):
     """
