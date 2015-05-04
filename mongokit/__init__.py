@@ -29,6 +29,7 @@ __version__ = "0.9.1"
 
 from bson.dbref import DBRef
 from mongokit.cursor import Cursor
+from mongokit.paginator import Paginator
 from mongokit.operators import *
 from mongokit.schema_document import *
 from mongokit.mongo_exceptions import *
