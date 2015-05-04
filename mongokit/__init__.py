@@ -27,6 +27,9 @@
 
 __version__ = "0.9.1"
 
+# W0401,W0614,W0611 wildcard/unused import
+# pylint: disable=W0401,W0614,W0611
+
 from bson.dbref import DBRef
 from mongokit.cursor import Cursor
 from mongokit.paginator import Paginator
@@ -50,3 +53,4 @@ from pymongo import (
     HASHED as INDEX_HASHED
 )
 from mongokit.migration import DocumentMigration
+# pylint: enable=W0401,W0614,W0611

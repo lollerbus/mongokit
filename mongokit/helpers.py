@@ -28,6 +28,9 @@
 import datetime
 import logging
 from uuid import UUID, uuid4
+from copy import deepcopy
+from mongokit.mongo_exceptions import EvalException
+
 log = logging.getLogger(__name__)
 
 
@@ -55,8 +58,6 @@ def fromtimestamp(epoch_date):
     """
     seconds = float(epoch_date) / 1000.0
     return datetime.datetime.utcfromtimestamp(seconds)
-
-from copy import deepcopy
 
 
 class i18nDotedDict(dict):
@@ -146,10 +147,6 @@ class DotedDict(dict):
 
     def __setstate__(self, d):
         self.__dict__.update(d)
-
-
-class EvalException(Exception):
-    pass
 
 
 class DotExpandedDict(dict):
